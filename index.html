@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+<style>
+    :root {
+        --bg-color: #f4f4f4;
+        --text-color: #333;
+        --card-bg: #fff;
+        --accent-color: #ff9800;
+    }
+
+    [data-theme="dark"] {
+        --bg-color: #121212;
+        --text-color: #f4f4f4;
+        --card-bg: #1e1e1e;
+        --accent-color: #ff9800;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: var(--bg-color);
+        color: var(--text-color);
+        transition: all 0.3s ease;
+    }
+
+    header {
+        background: var(--card-bg);
+        padding: 1rem 0;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    nav a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+        color: var(--accent-color);
+    }
+
+    .theme-toggle {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        background: var(--accent-color);
+        border: none;
+        color: #fff;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    section {
+        max-width: 1000px;
+        margin: auto;
+        padding: 2rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    section.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .about img {
+        width: 150px;
+        border-radius: 50%;
+        display: block;
+        margin: auto;
+    }
+
+    .projects, .certificates {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background: var(--card-bg);
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card img {
+        width: 100%;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .contact {
+        text-align: center;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 10px;
+        background: var(--accent-color);
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+        background: #e68900;
+    }
+
+    footer {
+        text-align: center;
+        padding: 1rem;
+        background: var(--card-bg);
+        color: var(--text-color);
+        margin-top: 20px;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* Modal for certificate viewer */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    }
+
+    .modal.active {
+        display: flex;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>My Portfolio</h1>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+</header>
+
+<section id="about" class="about">
+    <h2>About Me</h2>
+    <img src="my-photo.jpg" alt="Profile Photo">
+    <p style="text-align:center; margin-top:10px;">
+        Hi! I am Swaroop G Suvarna, a passionate computer science engineer aiming to excel in data analysis and technology. 
+        This is my personal portfolio where I showcase my work and achievements.
+    </p>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+        <div class="card">
+            <h3>Parkinsons Disease prediction</h3>
+            <p>Parkinson’s disease prediction involves using medical data such as speech patterns, movement measurements, handwriting samples, or brain imaging to identify early signs of the disease before significant symptoms appear.</p>
+        </div>
+        <div class="card">
+            <h3>Fresh Fins</h3>
+            <p>Fresh Fins is a smart seafood marketplace app that connects fishermen directly with customers, delivering freshly caught, sustainably sourced seafood to your doorstep within hours of catch.</p>
+        </div>
+         <div class="card">
+            <h3>Trailblaze</h3>
+            <p>Trailblaze is a smart navigation stick designed to assist visually impaired individuals by using sensors and GPS to detect obstacles, provide real-time navigation guidance, and ensure safer, more independent mobility.</p>
+        </div>
+    </div>
+</section>
+
+<section id="certificates">
+    <h2>Certificates</h2>
+    <div class="certificates">
+        <div class="card">
+            <img src="certificate1.jpg" alt="Certificate Name 1">
+            <p>Python</p>
+        </div>
+        <div class="card">
+            <img src="certificate2.jpg" alt="Certificate Name 2">
+            <p>JavaScript</p>
+        </div>
+        <div class="card">
+            <img src="certificate3.jpg" alt="Certificate Name 3">
+            <p>Robotic Process Automation</p>
+        </div>
+        <div class="card">
+            <img src="certificate4.jpg" alt="Certificate Name 4">
+            <p>Research Methodology</p>
+        </div>
+        <div class="card">
+            <img src="certificate5.jpg" alt="Certificate Name 5">
+            <p>Introduction to Deep Learning</p>
+        </div>
+        <div class="card">
+            <img src="certificate6.jpg" alt="Certificate Name 6">
+            <p>Deep Learning for Developers</p>
+        </div>
+        <div class="card">
+            <img src="certificate7.jpg" alt="Certificate Name 7">
+            <p>AWS Cloud CLF</p>
+        </div>
+        <div class="card">
+            <img src="certificate8.jpg" alt="Certificate Name 8">
+            <p>Introduction to NLP</p>
+        </div>
+        <div class="card">
+            <img src="certificate9.jpg" alt="Certificate Name 9">
+            <p>Introduction to AI</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact">
+        <p>Email: <a href="mailto:suvarnaswaroopg@gmail.com">suvarnaswaroopg@gmail.com</a></p>
+        <p>Phone: 9019711264</p>
+            </div>
+</section>
+
+<footer>
+    <p>© 2025 Swaroop G Suvarna. All rights reserved.</p>
+</footer>
+
+<!-- Single Modal for All Certificates -->
+<div class="modal" id="certificateModal">
+    <img src="" alt="Certificate">
+</div>
+
+<script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Theme toggle
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        document.documentElement.setAttribute("data-theme", currentTheme === "dark" ? "light" : "dark");
+        document.querySelector(".theme-toggle").textContent = currentTheme === "dark" ? "🌙" : "☀️";
+    }
+
+    // Scroll reveal animation
+    const sections = document.querySelectorAll('section');
+    window.addEventListener('scroll', () => {
+        sections.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                sec.classList.add('show');
+            }
+        });
+    });
+
+    // Certificate modal viewer
+    const modal = document.getElementById("certificateModal");
+    const modalImg = modal.querySelector("img");
+
+    document.querySelectorAll(".certificates img").forEach(img => {
+        img.addEventListener("click", () => {
+            modal.classList.add("active");
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+        });
+    });
+
+    modal.addEventListener("click", () => {
+        modal.classList.remove("active");
+    });
+</script>
+
+</body>
+</html>
